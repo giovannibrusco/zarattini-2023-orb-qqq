@@ -28,8 +28,8 @@ followed by three questions the paper never asks:
 
 | | |
 |---|---|
-| 🎯 **Replication** | Reproduced within noise — **1,775 trades** (paper: 1,795), Sharpe **1.06** (paper: 1.12) |
-| 💸 **Execution kills it** | Gross edge **$0.070/share**; net PnL crosses **zero at ~2.2¢/share** of slippage — the edge lives *inside* the bid-ask spread |
+| 🎯 **Replication** | Closely reproduced — **1,775 trades** (paper: 1,795), Sharpe **1.06** (paper: 1.12), max DD **22%** (paper: 22%); final equity $164k vs the paper's $193k |
+| 💸 **Execution kills it** | No-slippage edge **$0.070/share**; net PnL crosses **zero at ~2.2¢/share** of entry slippage — only about two spreads of execution cost |
 | 🔀 **NQ filter helps, and it's real** | Requiring the 09:25 NQ bar to agree lifts edge to **$0.125/share**, per-trade **t-stat 2.05** (significant); the QQQ-own placebo does not clear significance |
 | ⚠️ **But it's fragile** | **76%** of the filtered PnL is 2022 alone; the filter loses money in 2017, 2020 and early 2023 |
 
@@ -54,14 +54,15 @@ where most of the active edge is actually made.*
 
 ---
 
-## 🔑 The headline chart: the edge is inside the spread
+## 🔑 The headline chart: the edge lives or dies on execution
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/slippage_sensitivity_dark.png">
   <img alt="Line chart of net PnL as entry slippage sweeps from 0 to 5 cents per share; PnL falls from $138,639 to negative, crossing zero at about 2.2 cents" src="assets/slippage_sensitivity_light.png">
 </picture>
 
-The published $138,639 assumes **zero slippage**. Sweep entry slippage from 0 to
+The replication's $138,639 net PnL (the paper reports $25k → $192,806) assumes
+**zero slippage**, exactly as the paper does. Sweep entry slippage from 0 to
 5¢ (stop slippage at 2×) and net PnL crosses zero at **~2.2¢/share**. Since QQQ's
 bid-ask spread is ~1¢, this is not a comfortable margin — it is an edge that
 survives or dies on execution quality. The paper's own assumption ("we assumed no
@@ -113,9 +114,12 @@ close. In practice this is *intraday momentum-continuation with a 1R stop*.
 
 ## 🔬 What the data actually said
 
-**1. The replication is exact.** Decoupling it from NQ data availability recovers
-**1,775 trades vs the paper's 1,795** and Sharpe 1.06 — the earlier 1,771-trade
-figure was an artifact of dropping bars where NQ was missing.
+**1. The replication is close.** Decoupling it from NQ data availability recovers
+**1,775 trades vs the paper's 1,795**, Sharpe 1.06 vs 1.12 and the same ~22% max
+drawdown — the earlier 1,771-trade figure was an artifact of dropping bars where NQ
+was missing. Final equity lands lower ($164k vs the paper's $193k, CAGR 30% vs
+31–33%) — a gap not yet isolated, plausibly data-vendor differences on the ~20
+unmatched sessions and in bar prices; the qualitative result is unchanged.
 
 **2. The NQ filter is more than a momentum proxy — my prior was wrong.** The
 control experiment replaces NQ with QQQ's *own* 09:25 pre-market bar (the placebo).
