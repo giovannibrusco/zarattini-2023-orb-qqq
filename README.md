@@ -182,6 +182,7 @@ the edge was already decaying at the end of the sample, which makes extending to
 **Open**
 
 - [ ] Extend the sample to 2023–2026 (true out-of-sample; tests the 2023 decay) — downloader ready: [`scripts/download_ib.py`](scripts/download_ib.py), see [`data/README.md`](data/README.md)
+  - External data point: an independent run of the unfiltered rule and the own-market (placebo-style) filter on **ES futures, Mar–Sep 2026** found no edge even before costs ([#3](https://github.com/giovannibrusco/zarattini-2023-orb-qqq/issues/3)) — different instrument and a short sample, so supporting evidence only
 - [ ] Walk-forward / train–test split to de-bias the in-sample filter choice
 - [ ] Volatility-scaled stop slippage for gap days
 - [ ] Dividend- and risk-free-adjusted benchmark
